@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centro Médico Quirúrgico ESMEIN — Especialidades Médicas Integrales | Quito, Ecuador</title>
+  <meta name="description" content="Centro Médico Quirúrgico ESMEIN: atención permanente en todas las especialidades médicas, diagnóstico por imágenes, imagenología y odontología. 24/7, convenio IESS, Quito Ecuador." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { sans: ['Outfit', 'sans-serif'] } } }
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Outfit', sans-serif; }
+
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 80ms; } .d2 { transition-delay: 160ms; }
+    .d3 { transition-delay: 240ms; } .d4 { transition-delay: 320ms; } .d5 { transition-delay: 400ms; } .d6 { transition-delay: 480ms; } .d7 { transition-delay: 560ms; } .d8 { transition-delay: 640ms; }
+
+    .nav-glass {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(228,228,231,0.55);
+    }
+
+    .ecg-path {
+      stroke-dasharray: 520; stroke-dashoffset: 520;
+      animation: ecg-draw 2.8s cubic-bezier(0.16,1,0.3,1) 0.5s forwards,
+                 ecg-pulse 3s ease-in-out 3.5s infinite;
+    }
+    @keyframes ecg-draw  { to { stroke-dashoffset: 0; } }
+    @keyframes ecg-pulse { 0%,100% { opacity:1 } 50% { opacity:0.35 } }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0px); }
+      50%      { transform: translateY(-8px); }
+    }
+    .float { animation: float 5s ease-in-out infinite; }
+
+    @keyframes pdot {
+      0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(30,58,138,0.50); }
+      60%      { opacity:0.6; box-shadow:0 0 0 7px rgba(30,58,138,0); }
+    }
+    .pulse-dot { animation: pdot 2s ease-in-out infinite; }
+
+    .btn-navy {
+      background: #1e3a8a; color: #fff;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-navy:hover {
+      background: #172554; transform: translateY(-1px);
+      box-shadow: 0 10px 28px -6px rgba(30,58,138,0.45);
+    }
+    .btn-navy:active { transform: translateY(0) scale(0.98); }
+
+    .btn-outline {
+      border: 1px solid #e4e4e7; color: #3f3f46;
+      transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-outline:hover { border-color: #a1a1aa; background: #fff; transform: translateY(-1px); }
+
+    .spec-card {
+      border: 1px solid #e4e4e7;
+      transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    .spec-card:hover {
+      border-color: #93c5fd;
+      box-shadow: 0 24px 48px -16px rgba(30,58,138,0.14);
+      transform: translateY(-3px);
+    }
+
+    .photo-card {
+      position: relative; overflow: hidden; border-radius: 1.5rem;
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    .photo-card:hover { transform: translateY(-3px); }
+    .photo-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .photo-card:hover img { transform: scale(1.04); }
+
+    .glass-badge {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(255,255,255,0.6);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 16px 32px -10px rgba(0,0,0,0.12);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-adn-image {
+      object-position: center;
+      filter: saturate(1.06) contrast(1.04);
+      transform: scale(1.03);
+    }
+
+    .video-shell {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      background: #0d1b3e;
+      box-shadow: 0 30px 70px -30px rgba(13,27,62,0.45);
+    }
+    .video-shell::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(13,27,62,0.08) 0%, rgba(13,27,62,0) 32%, rgba(13,27,62,0.18) 100%),
+        radial-gradient(60% 45% at 18% 12%, rgba(96,165,250,0.18) 0%, rgba(96,165,250,0) 70%);
+    }
+    .video-shell video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: min(72dvh, 680px);
+      object-fit: cover;
+      background: #0d1b3e;
+    }
+    .video-shell iframe {
+      position: relative;
+      z-index: 2;
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      min-height: 260px;
+      max-height: min(72dvh, 680px);
+      border: 0;
+      background: #0d1b3e;
+    }
+
+    .dot-grid {
+      background-image: radial-gradient(circle, rgba(96,165,250,0.18) 1.2px, transparent 1.2px);
+      background-size: 28px 28px;
+    }
+
+    .form-field {
+      width: 100%; padding: 0.8rem 1rem;
+      font-family: 'Outfit', sans-serif; font-size: 0.9rem;
+      color: #18181b; background: #fff; border: 1px solid #e4e4e7;
+      border-radius: 0.625rem; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-field:focus { border-color: #1e3a8a; box-shadow: 0 0 0 3.5px rgba(30,58,138,0.12); }
+    .form-field::placeholder { color: #a1a1aa; }
+
+    ::-webkit-scrollbar         { width: 5px; }
+    ::-webkit-scrollbar-track   { background: #f4f4f5; }
+    ::-webkit-scrollbar-thumb   { background: #d4d4d8; border-radius: 4px; }
+
+    body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+      opacity: 0.022;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ═══ Hero animated overlay ═══ */
+    .hero-overlay {
+      position: absolute; inset: 0;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(13,27,62,0.78) 0%, rgba(13,27,62,0.26) 44%, rgba(13,27,62,0.48) 100%),
+        linear-gradient(to top, rgba(13,27,62,0.82) 0%, rgba(13,27,62,0.18) 58%, rgba(13,27,62,0.08) 100%);
+    }
+    /* Aurora — gradientes que respiran y se desplazan suavemente */
+    .hero-overlay::before {
+      content: '';
+      position: absolute; inset: -20%;
+      background:
+        radial-gradient(38% 32% at 24% 80%, rgba(96,165,250,0.32) 0%, rgba(96,165,250,0) 62%),
+        radial-gradient(42% 36% at 78% 68%, rgba(30,58,138,0.34) 0%, rgba(30,58,138,0) 66%),
+        radial-gradient(32% 28% at 60% 95%, rgba(147,197,253,0.22) 0%, rgba(147,197,253,0) 62%);
+      filter: blur(8px);
+      animation: aurora-drift 14s ease-in-out infinite alternate;
+      mix-blend-mode: screen;
+    }
+    /* Onda de pulso (heartbeat) que se expande desde el centro inferior */
+    .hero-overlay::after {
+      content: '';
+      position: absolute;
+      left: 58%; bottom: 22%;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: rgba(191,219,254,0.72);
+      transform: translate(-50%, 50%);
+      box-shadow: 0 0 0 0 rgba(147,197,253,0.42);
+      animation: heartbeat-pulse 2.4s cubic-bezier(0.4,0,0.2,1) infinite;
+    }
+    @keyframes aurora-drift {
+      0%   { transform: translate3d(0%, 0%, 0) scale(1);    opacity: 0.85; }
+      50%  { transform: translate3d(-4%, 2%, 0) scale(1.08); opacity: 1;    }
+      100% { transform: translate3d(3%, -3%, 0) scale(1.04); opacity: 0.9;  }
+    }
+    @keyframes heartbeat-pulse {
+      0%   { box-shadow: 0 0 0 0    rgba(147,197,253,0.42), 0 0 0 0    rgba(96,165,250,0.28); opacity: 1; }
+      70%  { box-shadow: 0 0 0 80px rgba(147,197,253,0),    0 0 0 140px rgba(96,165,250,0);    opacity: 0.6; }
+      100% { box-shadow: 0 0 0 0    rgba(147,197,253,0),    0 0 0 0    rgba(96,165,250,0);    opacity: 1; }
+    }
+
+    /* Líneas de barrido tipo "scan" del equipo de imagenología */
+    .hero-overlay .scan-line {
+      position: absolute; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(147,197,253,0.0) 10%,
+        rgba(147,197,253,0.38) 50%,
+        rgba(147,197,253,0.0) 90%,
+        transparent 100%);
+      box-shadow: 0 0 10px rgba(147,197,253,0.34);
+      animation: scan-sweep 7.5s linear infinite;
+      opacity: 0.48;
+    }
+    .hero-overlay .scan-line.s2 { animation-duration: 9s; animation-delay: -3s; opacity: 0.35; }
+    @keyframes scan-sweep {
+      0%   { top: -2%;  opacity: 0; }
+      10%  { opacity: 0.6; }
+      90%  { opacity: 0.6; }
+      100% { top: 102%; opacity: 0; }
+    }
+
+    /* Partículas flotantes (puntos de luz) */
+    .hero-overlay .particle {
+      position: absolute;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: rgba(219,234,254,0.7);
+      box-shadow: 0 0 10px rgba(147,197,253,0.52);
+      animation: particle-float 11s ease-in-out infinite;
+      opacity: 0;
+    }
+    .hero-overlay .p1 { left: 18%; bottom: 0;  animation-delay: 0s;   }
+    .hero-overlay .p2 { left: 42%; bottom: 0;  animation-delay: 1.6s; width: 3px; height: 3px; }
+    .hero-overlay .p3 { left: 68%; bottom: 0;  animation-delay: 3.2s; }
+    .hero-overlay .p4 { left: 86%; bottom: 0;  animation-delay: 4.8s; width: 3px; height: 3px; }
+    .hero-overlay .p5 { left: 30%; bottom: 0;  animation-delay: 6.4s; width: 5px; height: 5px; }
+    @keyframes particle-float {
+      0%   { transform: translateY(0)     scale(0.6); opacity: 0; }
+      15%  { opacity: 0.68; }
+      85%  { opacity: 0.48; }
+      100% { transform: translateY(-78vh) scale(1.1); opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-overlay::before,
+      .hero-overlay::after,
+      .hero-overlay .scan-line,
+      .hero-overlay .particle { animation: none; }
+    }
+  </style>
+</head>
+<body class="bg-zinc-50 text-zinc-900 antialiased">
+
+  <!-- ════════════════ NAVBAR ════════════════ -->
+  <nav class="fixed top-0 left-0 right-0 z-50 nav-glass">
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+
+      <a href="#" class="flex items-center">
+        <img src="images/logo.png" alt="Centro Médico Quirúrgico ESMEIN" class="h-10 w-auto" />
+      </a>
+
+      <div class="hidden md:flex items-center gap-7">
+        <a href="#nosotros"       class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors">Nosotros</a>
+        <a href="#especialidades" class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors">Especialidades</a>
+        <a href="#diagnostico"    class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors">Diagnóstico</a>
+        <a href="#equipo"         class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors">Médicos</a>
+        <a href="#contacto"       class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors">Contacto</a>
+      </div>
+
+      <a href="tel:022297577" class="btn-navy hidden md:block text-sm font-medium px-5 py-2.5 rounded-full">
+        Llamar ahora
+      </a>
+
+      <button id="menu-btn" class="md:hidden p-1.5 text-zinc-600" aria-label="Menú">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden px-6 pt-3 pb-5 flex flex-col gap-4 border-t border-zinc-100/70">
+      <a href="#nosotros"       class="text-sm text-zinc-600 hover:text-zinc-900">Nosotros</a>
+      <a href="#especialidades" class="text-sm text-zinc-600 hover:text-zinc-900">Especialidades</a>
+      <a href="#diagnostico"    class="text-sm text-zinc-600 hover:text-zinc-900">Diagnóstico</a>
+      <a href="#equipo"         class="text-sm text-zinc-600 hover:text-zinc-900">Médicos</a>
+      <a href="#contacto"       class="text-sm text-zinc-600 hover:text-zinc-900">Contacto</a>
+      <a href="tel:022297577" class="btn-navy text-sm font-medium px-5 py-3 rounded-full text-center">Llamar ahora</a>
+    </div>
+  </nav>
+
+
+  <!-- ════════════════ HERO ════════════════ -->
+  <section class="lg:h-[100dvh] lg:max-h-[100dvh] grid grid-cols-1 lg:grid-cols-2 pt-20 lg:overflow-hidden">
+
+    <!-- Left: copy -->
+    <div class="flex flex-col justify-center px-6 md:px-14 lg:pl-20 lg:pr-10 py-12 lg:py-12 lg:h-full lg:overflow-hidden">
+
+      <div class="reveal visible flex items-center gap-2.5 mb-4">
+        <span class="w-2 h-2 rounded-full pulse-dot inline-block" style="background:#1e3a8a;"></span>
+        <span class="text-xs font-medium tracking-widest uppercase" style="color:#1d4ed8;">ATENCIÓN ESPECIALIZADA, CON LA MEJOR TECNOLOGÍA Y AL MEJOR COSTO.</span>
+      </div>
+
+      <p class="reveal visible text-xs font-medium tracking-widest uppercase text-zinc-400 mb-2">
+        ESPECIALIDADES MÉDICAS INTEGRALES
+      </p>
+
+      <h1 class="reveal visible text-4xl md:text-5xl xl:text-6xl font-extrabold tracking-tighter leading-[0.95] text-zinc-900 mb-2">
+        Centro Médico<br/>Quirúrgico<br/>
+        <span style="color:#1e3a8a;">ESMEIN</span>
+      </h1>
+
+      <p class="reveal visible text-sm font-medium text-zinc-400 mb-3 tracking-wide">
+        Especialidades Médicas Integrales
+      </p>
+
+      <p class="reveal visible text-sm text-zinc-500 leading-relaxed max-w-[52ch] mb-5 font-light">
+        Atención permanente en todas las especialidades médicas, con tecnología de punta y recursos humanos calificados.
+      </p>
+
+      <div class="reveal visible flex flex-wrap gap-3 mb-6">
+        <a href="#contacto" class="btn-navy px-6 py-2.5 rounded-full font-semibold text-sm">
+          Solicitar cita
+        </a>
+        <a href="#especialidades" class="btn-outline px-6 py-2.5 rounded-full font-medium text-sm">
+          Ver especialidades
+        </a>
+      </div>
+
+      <div class="reveal visible flex flex-wrap gap-5 border-t border-zinc-100 pt-4">
+        <div>
+          <p class="text-sm font-bold tracking-tight text-zinc-900">ATENCIÓN CONTINUA</p>
+          <p class="text-[11px] text-zinc-400 mt-0.5 leading-snug">8H00 a 18H00 · Lun – Vie</p>
+        </div>
+        <div class="w-px bg-zinc-100 self-stretch"></div>
+        <div>
+          <p class="text-sm font-bold tracking-tight text-zinc-900">EMERGENCIAS</p>
+          <p class="text-[11px] text-zinc-400 mt-0.5 leading-snug">Atención permanente</p>
+        </div>
+        <div class="w-px bg-zinc-100 self-stretch"></div>
+        <div>
+          <p class="text-sm font-bold tracking-tight text-zinc-900">+13 ESPECIALIDADES</p>
+          <p class="text-[11px] text-zinc-400 mt-0.5 leading-snug">Médicas integrales</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: ADN photo -->
+    <div class="relative flex items-end justify-start overflow-hidden min-h-[420px] lg:min-h-0 lg:h-full w-full" style="background:#0d1b3e;">
+      <img src="images/adnImage.jpg" alt="Representación de ADN y medicina molecular"
+           class="hero-adn-image absolute inset-0 w-full h-full object-cover"
+           onerror="this.style.display='none'" />
+      <!-- Overlay animado -->
+      <div class="hero-overlay">
+        <span class="scan-line"></span>
+        <span class="scan-line s2"></span>
+        <span class="particle p1"></span>
+        <span class="particle p2"></span>
+        <span class="particle p3"></span>
+        <span class="particle p4"></span>
+        <span class="particle p5"></span>
+      </div>
+
+      <!-- ECG line -->
+      <div class="absolute left-0 right-0 top-1/3 px-6 pointer-events-none">
+        <svg viewBox="0 0 540 80" fill="none" class="w-full opacity-30">
+          <path class="ecg-path"
+            d="M0 40 L80 40 L95 40 L108 14 L121 66 L132 6 L145 74 L160 40 L190 40
+               L220 40 L245 40 L258 16 L271 64 L283 8 L296 72 L310 40
+               L340 40 L380 40 L540 40"
+            stroke="#60a5fa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- Floating badges over photo -->
+      <div class="relative z-10 p-8 w-full">
+        <div class="flex gap-3 flex-wrap">
+          <div class="glass-badge px-4 py-3 rounded-2xl float">
+            <p class="text-2xl font-extrabold tracking-tight leading-none" style="color:#1e3a8a;">24/7</p>
+            <p class="text-[10px] text-zinc-400 mt-0.5">atención permanente</p>
+          </div>
+          <div class="glass-badge px-4 py-3 rounded-2xl float" style="animation-delay:1s;">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0" style="background:#1e3a8a;">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                  <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-zinc-800 leading-none">Convenio IESS</p>
+                <p class="text-[10px] text-zinc-400">afiliados y familiares</p>
+              </div>
+            </div>
+          </div>
+          <div class="glass-badge px-4 py-3 rounded-2xl float" style="animation-delay:2s;">
+            <p class="text-xs font-semibold text-zinc-800 leading-tight">Quito, Ecuador</p>
+            <p class="text-[10px] text-zinc-400">Ángel Ludeña Oe5-296</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ NOSOTROS ════════════════ -->
+  <section id="nosotros" class="py-24 lg:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left: photo -->
+        <div class="reveal">
+          <div class="photo-card h-[480px]">
+            <img src="images/edificio.jpeg" alt="Fachada Centro Médico Quirúrgico ESMEIN" />
+            <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(13,27,62,0.55) 0%, transparent 60%);"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <p class="text-white font-bold text-lg leading-tight">Centro Médico Quirúrgico ESMEIN</p>
+              <p class="text-blue-200 text-sm mt-1">Ángel Ludeña Oe5-296 y Pedro Cieza de León · Quito</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: content -->
+        <div class="reveal d2">
+          <p class="text-xs font-medium tracking-widest uppercase mb-4" style="color:#1d4ed8;">Sobre el centro</p>
+          <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-zinc-900 leading-tight mb-6">
+            Salud integral<br/>a tu alcance
+          </h2>
+          <div class="w-10 h-[3px] rounded-full mb-8" style="background:#1e3a8a;"></div>
+
+          <p class="text-lg text-zinc-500 leading-relaxed mb-6 font-light">
+            El Centro Médico Quirúrgico ESMEIN es un centro de especialidades médicas, quirúrgicas y dentales
+            en Quito, comprometido con brindar atención de la más alta calidad al menor costo,
+            con tecnología de punta y recursos humanos altamente calificados.
+          </p>
+          <p class="text-base text-zinc-400 leading-relaxed mb-10">
+            Con atención ininterrumpida las 24 horas, los 7 días de la semana, y convenio con el IESS,
+            ponemos a disposición de nuestros pacientes el acceso a más de 13 especialidades médicas
+            en un solo lugar.
+          </p>
+
+          <div class="grid grid-cols-2 gap-x-8 gap-y-6">
+            <div class="border-l-2 pl-5" style="border-color:#1e3a8a;">
+              <p class="text-sm font-semibold text-zinc-800 mb-1">Atención 24/7</p>
+              <p class="text-xs text-zinc-400 leading-snug">Todos los días del año, sin excepción</p>
+            </div>
+            <div class="border-l-2 border-zinc-200 pl-5">
+              <p class="text-sm font-semibold text-zinc-800 mb-1">Convenio IESS</p>
+              <p class="text-xs text-zinc-400 leading-snug">Atención a afiliados y derecho-habientes</p>
+            </div>
+            <div class="border-l-2 border-zinc-200 pl-5">
+              <p class="text-sm font-semibold text-zinc-800 mb-1">+13 Especialidades</p>
+              <p class="text-xs text-zinc-400 leading-snug">Todas las especialidades en un solo centro</p>
+            </div>
+            <div class="border-l-2 border-zinc-200 pl-5">
+              <p class="text-sm font-semibold text-zinc-800 mb-1">Laboratorio Clínico</p>
+              <p class="text-xs text-zinc-400 leading-snug">Diagnóstico y análisis clínicos completos</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ VIDEO INSTITUCIONAL ════════════════ -->
+  <section id="video-esmein" class="py-20 lg:py-28 bg-zinc-50">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="reveal mb-10 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-6 lg:gap-14 items-end">
+        <div>
+          <p class="text-xs font-medium tracking-widest uppercase mb-3" style="color:#1d4ed8;">ESMEIN en acción</p>
+          <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-zinc-900 leading-tight">
+            Conoce nuestro<br/>centro médico
+          </h2>
+        </div>
+        <p class="text-sm text-zinc-400 leading-relaxed lg:text-right max-w-[48ch] lg:ml-auto">
+          Una mirada cercana a los espacios, tecnología y atención que acompañan a nuestros pacientes en Quito.
+        </p>
+      </div>
+
+      <div class="reveal d2 video-shell">
+        <iframe
+          title="Video institucional del Centro Médico Quirúrgico ESMEIN"
+          src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1906414460025786%2F&show_text=false&width=1280"
+          loading="lazy"
+          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="reveal d3 mt-6 flex justify-center">
+        <a href="https://web.facebook.com/reel/1906414460025786"
+           target="_blank" rel="noopener"
+           class="btn-outline px-6 py-2.5 rounded-full font-medium text-sm bg-white">
+          Ver video en Facebook
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ ESPECIALIDADES ════════════════ -->
+  <section id="especialidades" class="py-24 lg:py-32 bg-zinc-50">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+
+      <div class="reveal mb-16">
+        <p class="text-xs font-medium tracking-widest uppercase mb-3" style="color:#1d4ed8;">Consulta externa</p>
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-zinc-900 leading-tight">
+            Nuestras especialidades
+          </h2>
+          <p class="text-sm text-zinc-400 max-w-[38ch] md:text-right leading-relaxed">
+            Atención integral en todas las áreas de la medicina, cirugía y odontología
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:auto-rows-fr">
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d1 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Medicina General e Interna</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Diagnóstico y tratamiento integral del paciente adulto y adulto mayor.</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d2 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Emergencias</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Atención de urgencias médicas.</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d3 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Cardiología</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Diagnóstico y tratamiento de enfermedades cardiovasculares, chequeos preventivos e hipertensión arterial</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d4 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <path d="M12 2C8.5 2 6 4.5 6 7c0 1.5.5 3 1 4.5C8 14 8 17 9 19c.5 1.5 1.5 3 3 3s2.5-1.5 3-3c1-2 1-5 2-7.5.5-1.5 1-3 1-4.5 0-2.5-2.5-5-6-5z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Odontología General</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Atención dental completa para toda la familia</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d1 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <circle cx="12" cy="8" r="4"/><path d="M5 20c0-3.31 3.13-6 7-6s7 2.69 7 6"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Pediatría</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Atención médica integral para niños y adolescentes</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d2 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Ginecología</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Atención integral a la mujer. Control prenatal; anticoncepción familiar</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d3 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Traumatología</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Lesiones músculo-esqueléticas y ortopedia</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d4 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v11m0 0H5a2 2 0 00-2 2v4a2 2 0 002 2h4m0-6h6m0 0h4a2 2 0 012 2v4a2 2 0 01-2 2h-4m-6-6v6m0 0H9"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Gastroenterología</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Sistema digestivo y enfermedades gastrointestinales</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d1 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <path d="M12 3c-4 0-7 3-7 7s3 7 7 7 7-3 7-7-3-7-7-7z"/><path d="M8.5 9s.5-2 3.5-2 3.5 2 3.5 2M12 16v5M9 19h6"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Psiquiatría</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Salud mental, diagnóstico y tratamiento psiquiátrico</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d2 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Dermatología</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Diagnóstico y tratamiento de enfermedades de la piel</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d3 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+              <line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Urología</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Diagnóstico y tratamiento del sistema urinario</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d4 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <path d="M3 2l1 6 5-4-2 7h8l-2-7 5 4 1-6z"/><path d="M7 14v8"/><path d="M17 14v8"/><path d="M7 18h10"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Nutrición</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Asesoramiento nutricional y planes alimentarios personalizados</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d1 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Laboratorio Clínico</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Análisis clínicos completos</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d2 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Imagenología</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Ecografía en general y Rayos X digital, con tecnología de punta</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ DIAGNÓSTICO POR IMÁGENES ════════════════ -->
+  <section id="diagnostico" class="py-24 lg:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+
+      <div class="reveal mb-16">
+        <p class="text-xs font-medium tracking-widest uppercase mb-3" style="color:#1d4ed8;">Diagnóstico avanzado</p>
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-zinc-900 leading-tight">
+            Diagnóstico por<br/>imágenes
+          </h2>
+          <p class="text-sm text-zinc-400 max-w-[38ch] md:text-right leading-relaxed">
+            Tecnología de punta para un diagnóstico preciso y oportuno
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:auto-rows-fr">
+
+        <!-- Imagenología -->
+        <div class="reveal d1 bg-white rounded-3xl p-8 border border-zinc-100 h-full">
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:#eff6ff;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold tracking-tight text-zinc-900 mb-2">Imagenología General – lista de estudios</h3>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Ecografía Abdominal
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Ecografía renal y de vías urinarias
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Ecografía de Próstata
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Ecografía tiroides
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Ecografía Testicular
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Ecografía músculo - esquelética
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Ecografía doppler
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Ecografía obstétrica (embarazo / cromosómico / anatómico / 3D – 4D)
+            </li>
+          </ul>
+        </div>
+
+        <!-- Ecografía especializada -->
+        <div class="reveal d2 bg-white rounded-3xl p-8 border border-zinc-100 h-full">
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:#eff6ff;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold tracking-tight text-zinc-900 mb-2">Ecografía Especializada – lista de estudios</h3>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Ecografía Osteomuscular
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Doppler Vascular
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Transvaginal y Pélvica
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Ecografía Obstétrica
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Eco Morfológico Fetal
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Doppler Materno-Fetal
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Sonohisterografía
+            </li>
+          </ul>
+        </div>
+
+        <div class="reveal d3 bg-white rounded-3xl p-8 border border-zinc-100 h-full">
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:#eff6ff;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold tracking-tight text-zinc-900 mb-2">Rayos X y Estudios Especiales</h3>
+          <p class="text-sm text-zinc-400 mb-5">Rx Tórax · Abdomen · Osteomuscular</p>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Esofagograma
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Tránsito intestinal
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Colón por enema
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Histerosalpingografía
+            </li>
+            <li class="flex items-center gap-2 text-sm text-zinc-600">
+              <span class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background:#1e3a8a;"></span>Uretrocistografía retrógrada
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ EQUIPO MÉDICO ════════════════ -->
+  <section id="equipo" class="py-24 lg:py-32 bg-zinc-50">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+
+      <div class="reveal mb-16">
+        <p class="text-xs font-medium tracking-widest uppercase mb-3" style="color:#1d4ed8;">Profesionales</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-zinc-900 leading-tight">
+          Nuestro equipo médico
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+
+        <!-- Dr. Ortega -->
+        <div class="reveal d1 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="relative h-72 overflow-hidden">
+            <img src="images/doctorOrtega.jpeg" alt="Dr. Jose Luis Ortega — Medicina Crítica"
+                 class="w-full h-full object-cover object-top" />
+            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <p class="text-white font-bold text-lg">Dr. Jose Luis Ortega</p>
+              <p class="text-blue-200 text-sm">Medicina Crítica · Cuidados Intensivos</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm text-zinc-500 leading-relaxed">
+              Especialista en Medicina Crítica y Terapia Intensiva. Atención del paciente
+              críticamente enfermo con enfoque basado en evidencia.
+            </p>
+          </div>
+        </div>
+
+        <!-- Dra. Aguirre -->
+        <div class="reveal d2 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="relative h-72 overflow-hidden">
+            <img src="images/doctoraAguirre.jpeg" alt="Dra. Yael Aguirre — Médica Radióloga"
+                 class="w-full h-full object-cover object-top" />
+            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <p class="text-white font-bold text-lg">Dra. Yael Aguirre</p>
+              <p class="text-blue-200 text-sm">Médica Radióloga · Imagenología</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm text-zinc-500 leading-relaxed">
+              Especialista en Radiología e Imagenología. Responsable del área de diagnóstico
+              por imágenes, ecografía general y especializada.
+            </p>
+          </div>
+        </div>
+
+        <!-- Dr. Cisneros -->
+        <div class="reveal d3 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="relative h-72 overflow-hidden">
+            <img src="images/doctorCisneros.jpeg" alt="Dr. Fernando Cisneros — Urología"
+                 class="w-full h-full object-cover object-top" />
+            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <p class="text-white font-bold text-lg">Dr. Fernando Cisneros</p>
+              <p class="text-blue-200 text-sm">Urología</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm text-zinc-500 leading-relaxed">
+              Médico especialista en Urología. Médico tratante del hospital de Solca – Quito.
+            </p>
+          </div>
+        </div>
+
+        <!-- Dra. Rios -->
+        <div class="reveal d4 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="relative h-72 overflow-hidden">
+            <img src="images/doctoraRios.jpeg" alt="Dra. Maria Fernanda Ríos — Ginecología y Obstetricia"
+                 class="w-full h-full object-cover object-top" />
+            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <p class="text-white font-bold text-lg">Dra. Maria Fernanda Ríos</p>
+              <p class="text-blue-200 text-sm">Ginecología · Obstetricia</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm text-zinc-500 leading-relaxed">
+              Especialista en Ginecología y Obstetricia. Médica tratante del servicio de Alto Riesgo Obstétrico del Hospital Gineco – Obstétrico Isidro Ayora.
+            </p>
+          </div>
+        </div>
+
+        <!-- Dr. Barreño -->
+        <div class="reveal d5 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="relative h-72 overflow-hidden">
+            <img src="images/doctorBarreno.jpeg" alt="Dr. Carlos Roberto Barreño — Gastroenterología"
+                 class="w-full h-full object-cover object-top" />
+            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <p class="text-white font-bold text-lg">Dr. Carlos Roberto Barreño</p>
+              <p class="text-blue-200 text-sm">Gastroenterología</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm text-zinc-500 leading-relaxed">
+              Médico especialista en Gastroenterología. Tratante del Hospital Pablo Arturo Suárez.
+            </p>
+          </div>
+        </div>
+
+        <!-- Dr. Beltrán -->
+        <div class="reveal d6 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="relative h-72 overflow-hidden">
+            <img src="images/doctorBeltran.jpeg" alt="Dr. Fernando Marcelo Beltrán Lamboglia — Traumatología"
+                 class="w-full h-full object-cover object-top" />
+            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <p class="text-white font-bold text-lg">Dr. Fernando Marcelo Beltrán</p>
+              <p class="text-blue-200 text-sm">Traumatología · Ortopedia</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm text-zinc-500 leading-relaxed">
+              Médico especialista en Traumatología y Ortopedia. Tratante del Hospital San Francisco.
+            </p>
+          </div>
+        </div>
+
+        <!-- Dr. Perez -->
+        <div class="reveal d7 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="relative h-72 overflow-hidden">
+            <img src="images/doctorPerez.jpeg" alt="Dr. Ivan Perez Alvarez — Psiquiatría"
+                 class="w-full h-full object-cover object-top" />
+            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <p class="text-white font-bold text-lg">Dr. Ivan Perez Alvarez</p>
+              <p class="text-blue-200 text-sm">Psiquiatría</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm text-zinc-500 leading-relaxed">
+              Médico especialista de primer grado en Psiquiatría. Máster oficial en Psicoterapias de Tercera Generación. Tratante Hospital Pablo Arturo Suárez.
+            </p>
+          </div>
+        </div>
+
+        <!-- Dr. Trujillo -->
+        <div class="reveal d8 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="relative h-72 overflow-hidden">
+            <img src="images/doctorTrujillo.jpeg" alt="Dr. Aries Odin Trujillo Martinez — Odontología"
+                 class="w-full h-full object-cover object-top" />
+            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <p class="text-white font-bold text-lg">Dr. Aries Odin Trujillo</p>
+              <p class="text-blue-200 text-sm">Odontología</p>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm text-zinc-500 leading-relaxed">
+              Especialista en Odontología.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ SERVICIOS ════════════════ -->
+  <section id="servicios" class="py-24 lg:py-32" style="background:#0d1b3e;">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+
+      <div class="reveal mb-16">
+        <p class="text-xs font-medium tracking-widest uppercase mb-3" style="color:#60a5fa;">Cobertura y beneficios</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-white leading-tight">
+          Servicios y convenios
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20">
+
+        <div>
+          <p class="text-xs font-medium uppercase tracking-widest mb-8" style="color:#60a5fa;">Cobertura</p>
+          <div class="space-y-3">
+
+            <div class="reveal d1 p-5 rounded-2xl" style="border:1px solid rgba(255,255,255,0.07);">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(30,58,138,0.7);border:1px solid rgba(96,165,250,0.2);">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.5">
+                    <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-white leading-tight">Afiliados IESS</p>
+                  <p class="text-xs mt-1" style="color:rgba(255,255,255,0.38);">Instituto Ecuatoriano de Seguridad Social · Emergencias y consultas médicas</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="reveal d2 p-5 rounded-2xl" style="border:1px solid rgba(255,255,255,0.07);">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(30,58,138,0.7);border:1px solid rgba(96,165,250,0.2);">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.5">
+                    <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-white leading-tight">Pacientes Particulares</p>
+                  <p class="text-xs mt-1" style="color:rgba(255,255,255,0.38);">Precios accesibles · Sin cita previa en urgencias · Alta calidad garantizada</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="reveal d3 p-5 rounded-2xl" style="border:1px solid rgba(255,255,255,0.07);">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(30,58,138,0.7);border:1px solid rgba(96,165,250,0.2);">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.5">
+                    <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-white leading-tight">Emergencias 24 horas</p>
+                  <p class="text-xs mt-1" style="color:rgba(255,255,255,0.38);">Servicio de urgencias disponible todos los días del año · Personal médico especializado</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="reveal d4 p-5 rounded-2xl" style="border:1px solid rgba(255,255,255,0.07);">
+              <div class="flex items-start gap-4">
+                <div class="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5" style="background:rgba(30,58,138,0.7);border:1px solid rgba(96,165,250,0.2);">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2.5">
+                    <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="text-sm font-semibold text-white leading-tight">Tecnología de Punta</p>
+                  <p class="text-xs mt-1" style="color:rgba(255,255,255,0.38);">Equipos médicos de última generación y recursos humanos altamente calificados</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="text-xs font-medium uppercase tracking-widest mb-8" style="color:rgba(255,255,255,0.30);">¿Por qué elegirnos?</p>
+          <div class="space-y-0">
+            <div class="reveal d1 flex gap-5">
+              <div class="flex flex-col items-center flex-shrink-0">
+                <span class="w-3 h-3 rounded-full mt-[5px]" style="background:#60a5fa;"></span>
+                <span class="w-px flex-1 my-2" style="background:rgba(255,255,255,0.07);"></span>
+              </div>
+              <div class="pb-8">
+                <p class="text-base font-semibold text-white mb-1">Todas las especialidades en un solo lugar</p>
+                <p class="text-sm" style="color:rgba(255,255,255,0.38);">Más de 13 especialidades médicas, diagnóstico por imágenes y odontología bajo un mismo techo.</p>
+              </div>
+            </div>
+            <div class="reveal d2 flex gap-5">
+              <div class="flex flex-col items-center flex-shrink-0">
+                <span class="w-3 h-3 rounded-full mt-[5px]" style="background:rgba(255,255,255,0.18);"></span>
+                <span class="w-px flex-1 my-2" style="background:rgba(255,255,255,0.07);"></span>
+              </div>
+              <div class="pb-8">
+                <p class="text-base font-semibold text-white mb-1">Atención personalizada y humana</p>
+                <p class="text-sm" style="color:rgba(255,255,255,0.38);">Comprometidos con la recuperación de cada paciente y el acompañamiento de sus familias.</p>
+              </div>
+            </div>
+            <div class="reveal d3 flex gap-5">
+              <div class="flex flex-col items-center flex-shrink-0">
+                <span class="w-3 h-3 rounded-full mt-[5px]" style="background:rgba(255,255,255,0.18);"></span>
+              </div>
+              <div>
+                <p class="text-base font-semibold text-white mb-1">Calidad garantizada al menor costo</p>
+                <p class="text-sm" style="color:rgba(255,255,255,0.38);">La más alta calidad médica a precios accesibles, porque la salud no debe ser un privilegio.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ CONTACTO ════════════════ -->
+  <section id="contacto" class="py-24 lg:py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-16 items-start">
+
+        <div class="reveal">
+          <p class="text-xs font-medium tracking-widest uppercase mb-4" style="color:#1d4ed8;">Contáctenos</p>
+          <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-zinc-900 leading-tight mb-8">
+            Agenda tu<br/>consulta hoy
+          </h2>
+          <p class="text-base text-zinc-400 leading-relaxed mb-10 font-light">
+            Disponibles las 24 horas del día. Llámenos directamente o complete el formulario
+            y le contactaremos a la brevedad.
+          </p>
+
+          <div class="space-y-6 mb-10">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#eff6ff;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-5.99-5.99 19.8 19.8 0 01-3.07-8.67A2 2 0 014 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs text-zinc-400 mb-1">Teléfono convencional</p>
+                <p class="text-sm font-semibold text-zinc-800">02229-7577</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#eff6ff;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs text-zinc-400 mb-1">Celular / WhatsApp</p>
+                <p class="text-sm font-semibold text-zinc-800">0962524887</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#eff6ff;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs text-zinc-400 mb-1">Dirección</p>
+                <p class="text-sm font-semibold text-zinc-800">
+                  Ángel Ludeña Oe5-296 y Pedro Cieza de León<br/>
+                  Quito, Ecuador
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style="background:#eff6ff;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-xs text-zinc-400 mb-1">Horario de atención</p>
+                <p class="text-sm font-semibold text-zinc-800">Lunes a Viernes: 8:00 - 18:00<br/>Sábado: 9:00 - 14:00</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-zinc-50 rounded-2xl p-6">
+            <p class="text-xs font-medium text-zinc-400 uppercase tracking-widest mb-4">Síguenos en redes</p>
+            <p class="text-sm text-zinc-500 leading-relaxed mb-4">
+              Mantente informado sobre nuestros servicios y novedades.
+            </p>
+            <div class="flex gap-3">
+              <a href="https://www.facebook.com/share/1BUy8bqpxA/"
+                 target="_blank" rel="noopener" aria-label="Visitar en Facebook"
+                 class="btn-navy inline-flex items-center justify-center w-11 h-11 rounded-xl">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal d2">
+          <form id="contact-form" novalidate class="bg-zinc-50 rounded-3xl p-8 lg:p-10 space-y-5">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div class="flex flex-col gap-1.5">
+                <label class="text-sm font-medium text-zinc-700">Nombre</label>
+                <input type="text" name="nombre" class="form-field" placeholder="María" required />
+              </div>
+              <div class="flex flex-col gap-1.5">
+                <label class="text-sm font-medium text-zinc-700">Apellido</label>
+                <input type="text" name="apellido" class="form-field" placeholder="González" required />
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <label class="text-sm font-medium text-zinc-700">Teléfono</label>
+              <input type="tel" name="telefono" class="form-field" placeholder="0999 000 000" required />
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <label class="text-sm font-medium text-zinc-700">Correo electrónico</label>
+              <input type="email" name="correo" class="form-field" placeholder="correo@ejemplo.com" />
+              <p class="text-xs text-zinc-400">Solo para enviar la confirmación de su cita.</p>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <label class="text-sm font-medium text-zinc-700">Especialidad</label>
+              <select name="especialidad" class="form-field">
+                <option value="">Seleccionar especialidad</option>
+                <option>Medicina General</option>
+                <option>Medicina Interna</option>
+                <option>Emergencia / Urgencia</option>
+                <option>Cardiología</option>
+                <option>Pediatría</option>
+                <option>Ginecología</option>
+                <option>Urología</option>
+                <option>Traumatología y Ortopedia</option>
+                <option>Gastroenterología</option>
+                <option>Psiquiatría</option>
+                <option>Dermatología</option>
+                <option>Nutrición</option>
+                <option>Podología</option>
+                <option>Odontología</option>
+                <option>Laboratorio Clínico</option>
+                <option>Imagenología / Ecografía</option>
+                <option>Rayos X y Estudios Especiales</option>
+                <option>Medicina Crítica</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col gap-1.5">
+              <label class="text-sm font-medium text-zinc-700">
+                Mensaje <span class="font-normal text-zinc-400 ml-1">(opcional)</span>
+              </label>
+              <textarea name="mensaje" class="form-field resize-none" rows="4"
+                placeholder="Describa brevemente su situación o el motivo de su consulta..."></textarea>
+            </div>
+
+            <button id="submit-btn" type="submit"
+                    class="btn-navy w-full py-4 rounded-2xl font-semibold text-sm transition-all duration-300">
+              Enviar solicitud de cita
+            </button>
+            <p class="text-xs text-center text-zinc-400">Respuesta en menos de 24 horas hábiles.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════ FOOTER ════════════════ -->
+  <footer style="background:#0d1b3e;" class="py-12">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-8 pb-8"
+           style="border-bottom:1px solid rgba(255,255,255,0.07);">
+
+        <div>
+          <img src="images/logo.png" alt="Centro Médico Quirúrgico ESMEIN" class="h-10 w-auto mb-2"
+               style="filter: brightness(0) invert(1);" />
+          <p class="text-xs" style="color:rgba(255,255,255,0.28);">Especialidades Médicas Integrales · Quito, Ecuador</p>
+        </div>
+
+        <div class="flex flex-wrap gap-6">
+          <a href="#nosotros"       class="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">Nosotros</a>
+          <a href="#especialidades" class="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">Especialidades</a>
+          <a href="#diagnostico"    class="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">Diagnóstico</a>
+          <a href="#equipo"         class="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">Médicos</a>
+          <a href="#contacto"       class="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">Contacto</a>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <p class="text-xs max-w-[55ch] leading-relaxed" style="color:rgba(255,255,255,0.22);">
+          La información de este sitio es de carácter informativo y no reemplaza la consulta médica presencial.
+        </p>
+        <p class="text-xs flex-shrink-0" style="color:rgba(255,255,255,0.22);">© 2025 Centro Médico Quirúrgico ESMEIN · Quito, Ecuador</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ════════════════ JS ════════════════ -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      submitBtn.textContent = 'Enviando...';
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.7';
+      try {
+        const response = await fetch('enviar.php', { method: 'POST', body: new FormData(form) });
+        const data = await response.json();
+        if (data.success) {
+          submitBtn.textContent = 'Solicitud enviada ✓';
+          submitBtn.style.opacity = '1';
+          submitBtn.style.background = '#172554';
+          form.reset();
+          setTimeout(() => {
+            submitBtn.textContent = 'Enviar solicitud de cita';
+            submitBtn.disabled = false;
+            submitBtn.style.background = '';
+          }, 3200);
+        } else {
+          submitBtn.textContent = 'Error al enviar — intente de nuevo';
+          submitBtn.style.opacity = '1';
+          submitBtn.style.background = '#dc2626';
+          setTimeout(() => {
+            submitBtn.textContent = 'Enviar solicitud de cita';
+            submitBtn.disabled = false;
+            submitBtn.style.background = '';
+          }, 3200);
+        }
+      } catch {
+        submitBtn.textContent = 'Error de conexión — intente de nuevo';
+        submitBtn.style.opacity = '1';
+        submitBtn.style.background = '#dc2626';
+        setTimeout(() => {
+          submitBtn.textContent = 'Enviar solicitud de cita';
+          submitBtn.disabled = false;
+          submitBtn.style.background = '';
+        }, 3200);
+      }
+    });
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    window.addEventListener('scroll', () => {
+      let active = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) active = s.id; });
+      navLinks.forEach(a => {
+        const isActive = a.getAttribute('href') === `#${active}`;
+        a.classList.toggle('text-zinc-900', isActive);
+        a.classList.toggle('text-zinc-500', !isActive);
+      });
+    }, { passive: true });
+  </script>
+</body>
+</html>
