@@ -1357,7 +1357,12 @@
       submitBtn.disabled = true;
       submitBtn.style.opacity = '0.7';
       try {
-        const response = await fetch('enviar.php', { method: 'POST', body: new FormData(form) });
+        const payload = Object.fromEntries(new FormData(form).entries());
+        const response = await fetch('/api/enviar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
         const data = await response.json();
         if (data.success) {
           submitBtn.textContent = 'Solicitud enviada ✓';

@@ -1,4 +1,9 @@
 .DS_Store
+.env
+.env.local
+.env.development.local
+.env.production.local
+node_modules/
 .claude/
 .agents/
 images/ESMEIN_FN.mp4
