@@ -95,6 +95,65 @@
       backdrop-filter: blur(10px);
     }
 
+    .doctor-card {
+      transition: border-color 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    .doctor-card:hover {
+      border-color: #bfdbfe;
+      box-shadow: 0 24px 48px -18px rgba(30,58,138,0.16);
+      transform: translateY(-3px);
+    }
+    .doctor-photo {
+      position: relative;
+      height: 21rem;
+      overflow: hidden;
+      background: #0d1b3e;
+    }
+    .doctor-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      opacity: 0;
+      filter: saturate(0.92) contrast(0.98);
+      transform: scale(1.045) translateY(10px);
+      transition:
+        opacity 1.25s cubic-bezier(0.16,1,0.3,1),
+        filter 1.25s cubic-bezier(0.16,1,0.3,1),
+        transform 1.45s cubic-bezier(0.16,1,0.3,1);
+    }
+    .doctor-photo img.active {
+      opacity: 1;
+      filter: saturate(1.04) contrast(1.02);
+      transform: scale(1) translateY(0);
+    }
+    .doctor-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(13,27,62,0.76) 0%, rgba(13,27,62,0.22) 52%, transparent 78%),
+        radial-gradient(70% 45% at 18% 100%, rgba(96,165,250,0.22) 0%, rgba(96,165,250,0) 68%);
+      pointer-events: none;
+    }
+    .doctor-photo > .absolute {
+      z-index: 1;
+    }
+    .doctor-indicators span {
+      display: block;
+      width: 1.6rem;
+      height: 2px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.34);
+      transition: background 0.35s cubic-bezier(0.16,1,0.3,1), width 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    .doctor-indicators span.active {
+      width: 2.4rem;
+      background: #bfdbfe;
+    }
+
     .hero-adn-image {
       object-position: center;
       filter: saturate(1.06) contrast(1.04);
@@ -795,155 +854,141 @@
 
       <div class="reveal mb-16">
         <p class="text-xs font-medium tracking-widest uppercase mb-3" style="color:#1d4ed8;">Profesionales</p>
-        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-zinc-900 leading-tight">
-          Nuestro equipo médico
-        </h2>
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-zinc-900 leading-tight">
+            Nuestro equipo médico
+          </h2>
+          <p class="text-sm text-zinc-400 max-w-[40ch] md:text-right leading-relaxed">
+            Profesionales especializados para una atención integral en consulta, diagnóstico y rehabilitación.
+          </p>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 
         <!-- Dr. Ortega -->
-        <div class="reveal d1 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
-          <div class="relative h-72 overflow-hidden">
-            <img src="images/doctorOrtega.jpeg" alt="Dr. Jose Luis Ortega — Medicina Crítica"
-                 class="w-full h-full object-cover object-top" />
-            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
+        <div class="doctor-card reveal d1 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="doctor-photo" data-doctor-gallery>
+            <img src="images/Dr. José Ortega (Medicína crítica y terapia intensiva)/Dr. José Ortega (Medicína crítica y terapia intensiva).png" alt="Dr. José Ortega — Medicina crítica y terapia intensiva" class="active" />
+            <img src="images/Dr. José Ortega (Medicína crítica y terapia intensiva)/Dr. José Ortega (Medicína crítica y terapia intensiva)_.png" alt="Dr. José Ortega — Medicina crítica y terapia intensiva" />
             <div class="absolute bottom-4 left-4 right-4">
-              <p class="text-white font-bold text-lg">Dr. Jose Luis Ortega</p>
-              <p class="text-blue-200 text-sm">Medicina Crítica · Cuidados Intensivos</p>
+              <p class="text-white font-bold text-lg leading-tight">Dr. José Ortega</p>
+              <p class="text-blue-200 text-sm leading-snug">Medicina crítica · Terapia intensiva</p>
+              <div class="doctor-indicators flex gap-2 mt-3" aria-hidden="true"></div>
             </div>
           </div>
           <div class="p-6">
             <p class="text-sm text-zinc-500 leading-relaxed">
-              Especialista en Medicina Crítica y Terapia Intensiva. Atención del paciente
-              críticamente enfermo con enfoque basado en evidencia.
+              Atención especializada del paciente crítico, con enfoque clínico y soporte integral.
             </p>
           </div>
         </div>
 
         <!-- Dra. Aguirre -->
-        <div class="reveal d2 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
-          <div class="relative h-72 overflow-hidden">
-            <img src="images/doctoraAguirre.jpeg" alt="Dra. Yael Aguirre — Médica Radióloga"
-                 class="w-full h-full object-cover object-top" />
-            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
+        <div class="doctor-card reveal d2 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="doctor-photo" data-doctor-gallery>
+            <img src="images/Dra. Yael Aguirre (Imagenología)/Dra. Yael Aguirre (Imagenología).png" alt="Dra. Yael Aguirre — Imagenología" class="active" />
+            <img src="images/Dra. Yael Aguirre (Imagenología)/Dra. Yael Aguirre (Imagenología)_.png" alt="Dra. Yael Aguirre — Imagenología" />
             <div class="absolute bottom-4 left-4 right-4">
-              <p class="text-white font-bold text-lg">Dra. Yael Aguirre</p>
-              <p class="text-blue-200 text-sm">Médica Radióloga · Imagenología</p>
+              <p class="text-white font-bold text-lg leading-tight">Dra. Yael Aguirre</p>
+              <p class="text-blue-200 text-sm leading-snug">Imagenología</p>
+              <div class="doctor-indicators flex gap-2 mt-3" aria-hidden="true"></div>
             </div>
           </div>
           <div class="p-6">
             <p class="text-sm text-zinc-500 leading-relaxed">
-              Especialista en Radiología e Imagenología. Responsable del área de diagnóstico
-              por imágenes, ecografía general y especializada.
+              Diagnóstico por imágenes, ecografía general y apoyo especializado para estudios clínicos.
             </p>
           </div>
         </div>
 
-        <!-- Dr. Cisneros -->
-        <div class="reveal d3 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
-          <div class="relative h-72 overflow-hidden">
-            <img src="images/doctorCisneros.jpeg" alt="Dr. Fernando Cisneros — Urología"
-                 class="w-full h-full object-cover object-top" />
-            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
+        <!-- Dr. George Hidalgo -->
+        <div class="doctor-card reveal d3 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="doctor-photo" data-doctor-gallery>
+            <img src="images/Dr. George Hidalgo (Especialista en acupuntura China)/Dr. George Hidalgo (Especialista en acupuntura China).png" alt="Dr. George Hidalgo — Especialista en acupuntura China" class="active" />
+            <img src="images/Dr. George Hidalgo (Especialista en acupuntura China)/Dr. George Hidalgo (Especialista en acupuntura China)_.png" alt="Dr. George Hidalgo — Especialista en acupuntura China" />
             <div class="absolute bottom-4 left-4 right-4">
-              <p class="text-white font-bold text-lg">Dr. Fernando Cisneros</p>
-              <p class="text-blue-200 text-sm">Urología</p>
+              <p class="text-white font-bold text-lg leading-tight">Dr. George Hidalgo</p>
+              <p class="text-blue-200 text-sm leading-snug">Especialista en acupuntura China</p>
+              <div class="doctor-indicators flex gap-2 mt-3" aria-hidden="true"></div>
             </div>
           </div>
           <div class="p-6">
             <p class="text-sm text-zinc-500 leading-relaxed">
-              Médico especialista en Urología. Médico tratante del hospital de Solca – Quito.
+              Terapias complementarias con enfoque en acupuntura China y bienestar integral.
             </p>
           </div>
         </div>
 
-        <!-- Dra. Rios -->
-        <div class="reveal d4 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
-          <div class="relative h-72 overflow-hidden">
-            <img src="images/doctoraRios.jpeg" alt="Dra. Maria Fernanda Ríos — Ginecología y Obstetricia"
-                 class="w-full h-full object-cover object-top" />
-            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
+        <!-- MSC Estefanía Carrera -->
+        <div class="doctor-card reveal d4 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="doctor-photo" data-doctor-gallery>
+            <img src="images/MSC Estefanía Carrera (Nutrióloga)/MSC Estefanía Carrera (nutrióloga).png" alt="MSC Estefanía Carrera — Nutrióloga" class="active" />
+            <img src="images/MSC Estefanía Carrera (Nutrióloga)/MSC Estefanía Carrera (nutrióloga)_.png" alt="MSC Estefanía Carrera — Nutrióloga" />
+            <img src="images/MSC Estefanía Carrera (Nutrióloga)/MSC Estefanía Carrera (nutrióloga)._.png" alt="MSC Estefanía Carrera — Nutrióloga" />
             <div class="absolute bottom-4 left-4 right-4">
-              <p class="text-white font-bold text-lg">Dra. Maria Fernanda Ríos</p>
-              <p class="text-blue-200 text-sm">Ginecología · Obstetricia</p>
+              <p class="text-white font-bold text-lg leading-tight">MSC Estefanía Carrera</p>
+              <p class="text-blue-200 text-sm leading-snug">Nutrióloga</p>
+              <div class="doctor-indicators flex gap-2 mt-3" aria-hidden="true"></div>
             </div>
           </div>
           <div class="p-6">
             <p class="text-sm text-zinc-500 leading-relaxed">
-              Especialista en Ginecología y Obstetricia. Médica tratante del servicio de Alto Riesgo Obstétrico del Hospital Gineco – Obstétrico Isidro Ayora.
+              Acompañamiento nutricional personalizado para hábitos sostenibles y salud preventiva.
             </p>
           </div>
         </div>
 
-        <!-- Dr. Barreño -->
-        <div class="reveal d5 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
-          <div class="relative h-72 overflow-hidden">
-            <img src="images/doctorBarreno.jpeg" alt="Dr. Carlos Roberto Barreño — Gastroenterología"
-                 class="w-full h-full object-cover object-top" />
-            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
+        <!-- Lic. Angelica Ortega -->
+        <div class="doctor-card reveal d5 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="doctor-photo" data-doctor-gallery>
+            <img src="images/Lic. Angelica Ortega (Laboratorio clínico)/Lic. Angelica Ortega (Laboratorio clínico) .png" alt="Lic. Angelica Ortega — Laboratorio clínico" class="active" />
+            <img src="images/Lic. Angelica Ortega (Laboratorio clínico)/Lic. Angelica Ortega (Laboratorio clínico) _.png" alt="Lic. Angelica Ortega — Laboratorio clínico" />
             <div class="absolute bottom-4 left-4 right-4">
-              <p class="text-white font-bold text-lg">Dr. Carlos Roberto Barreño</p>
-              <p class="text-blue-200 text-sm">Gastroenterología</p>
+              <p class="text-white font-bold text-lg leading-tight">Lic. Angelica Ortega</p>
+              <p class="text-blue-200 text-sm leading-snug">Laboratorio clínico</p>
+              <div class="doctor-indicators flex gap-2 mt-3" aria-hidden="true"></div>
             </div>
           </div>
           <div class="p-6">
             <p class="text-sm text-zinc-500 leading-relaxed">
-              Médico especialista en Gastroenterología. Tratante del Hospital Pablo Arturo Suárez.
+              Procesamiento y control de análisis clínicos para apoyar diagnósticos oportunos.
             </p>
           </div>
         </div>
 
-        <!-- Dr. Beltrán -->
-        <div class="reveal d6 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
-          <div class="relative h-72 overflow-hidden">
-            <img src="images/doctorBeltran.jpeg" alt="Dr. Fernando Marcelo Beltrán Lamboglia — Traumatología"
-                 class="w-full h-full object-cover object-top" />
-            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
+        <!-- Dr. Aries Trujillo -->
+        <div class="doctor-card reveal d6 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="doctor-photo" data-doctor-gallery>
+            <img src="images/Dr. Aries Trujillo (Odontólogo)/Dr. Aries Trujillo (Odontólogo).png" alt="Dr. Aries Trujillo — Odontólogo" class="active" />
+            <img src="images/Dr. Aries Trujillo (Odontólogo)/Dr. Aries Trujillo (Odontólogo)_.png" alt="Dr. Aries Trujillo — Odontólogo" />
             <div class="absolute bottom-4 left-4 right-4">
-              <p class="text-white font-bold text-lg">Dr. Fernando Marcelo Beltrán</p>
-              <p class="text-blue-200 text-sm">Traumatología · Ortopedia</p>
+              <p class="text-white font-bold text-lg leading-tight">Dr. Aries Trujillo</p>
+              <p class="text-blue-200 text-sm leading-snug">Odontólogo</p>
+              <div class="doctor-indicators flex gap-2 mt-3" aria-hidden="true"></div>
             </div>
           </div>
           <div class="p-6">
             <p class="text-sm text-zinc-500 leading-relaxed">
-              Médico especialista en Traumatología y Ortopedia. Tratante del Hospital San Francisco.
+              Atención odontológica para prevención, diagnóstico y tratamiento integral.
             </p>
           </div>
         </div>
 
-        <!-- Dr. Perez -->
-        <div class="reveal d7 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
-          <div class="relative h-72 overflow-hidden">
-            <img src="images/doctorPerez.jpeg" alt="Dr. Ivan Perez Alvarez — Psiquiatría"
-                 class="w-full h-full object-cover object-top" />
-            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
+        <!-- Junior Briaña -->
+        <div class="doctor-card reveal d7 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="doctor-photo" data-doctor-gallery>
+            <img src="images/Junior Briaña (Fisioterapeuta)/Junior Briaña (Fisioterapeuta).png" alt="Junior Briaña — Fisioterapeuta" class="active" />
+            <img src="images/Junior Briaña (Fisioterapeuta)/Junior Briaña (Fisioterapeuta)_.png" alt="Junior Briaña — Fisioterapeuta" />
             <div class="absolute bottom-4 left-4 right-4">
-              <p class="text-white font-bold text-lg">Dr. Ivan Perez Alvarez</p>
-              <p class="text-blue-200 text-sm">Psiquiatría</p>
+              <p class="text-white font-bold text-lg leading-tight">Junior Briaña</p>
+              <p class="text-blue-200 text-sm leading-snug">Fisioterapeuta</p>
+              <div class="doctor-indicators flex gap-2 mt-3" aria-hidden="true"></div>
             </div>
           </div>
           <div class="p-6">
             <p class="text-sm text-zinc-500 leading-relaxed">
-              Médico especialista de primer grado en Psiquiatría. Máster oficial en Psicoterapias de Tercera Generación. Tratante Hospital Pablo Arturo Suárez.
-            </p>
-          </div>
-        </div>
-
-        <!-- Dr. Trujillo -->
-        <div class="reveal d8 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
-          <div class="relative h-72 overflow-hidden">
-            <img src="images/doctorTrujillo.jpeg" alt="Dr. Aries Odin Trujillo Martinez — Odontología"
-                 class="w-full h-full object-cover object-top" />
-            <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(13,27,62,0.65) 0%, transparent 55%);"></div>
-            <div class="absolute bottom-4 left-4 right-4">
-              <p class="text-white font-bold text-lg">Dr. Aries Odin Trujillo</p>
-              <p class="text-blue-200 text-sm">Odontología</p>
-            </div>
-          </div>
-          <div class="p-6">
-            <p class="text-sm text-zinc-500 leading-relaxed">
-              Especialista en Odontología.
+              Rehabilitación física y acompañamiento terapéutico para movilidad y recuperación funcional.
             </p>
           </div>
         </div>
@@ -1266,6 +1311,35 @@
     const mobileMenu = document.getElementById('mobile-menu');
     menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+    document.querySelectorAll('[data-doctor-gallery]').forEach((gallery, galleryIndex) => {
+      const photos = Array.from(gallery.querySelectorAll('img'));
+      const indicators = gallery.querySelector('.doctor-indicators');
+      let activeIndex = photos.findIndex(photo => photo.classList.contains('active'));
+      if (activeIndex < 0) activeIndex = 0;
+
+      if (indicators) {
+        photos.forEach((_, index) => {
+          const indicator = document.createElement('span');
+          indicator.classList.toggle('active', index === activeIndex);
+          indicators.appendChild(indicator);
+        });
+      }
+
+      if (photos.length < 2) return;
+
+      setInterval(() => {
+        const nextIndex = (activeIndex + 1) % photos.length;
+        photos[activeIndex].classList.remove('active');
+        photos[nextIndex].classList.add('active');
+
+        indicators?.querySelectorAll('span').forEach((indicator, index) => {
+          indicator.classList.toggle('active', index === nextIndex);
+        });
+
+        activeIndex = nextIndex;
+      }, 10000 + (galleryIndex % 4) * 180);
+    });
 
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
