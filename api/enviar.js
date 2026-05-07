@@ -20,7 +20,7 @@ module.exports = async function handler(req, res) {
     return;
   }
 
-  const requiredEnv = ['SMTP_HOST', 'SMTP_USER', 'SMTP_PASS', 'MAIL_TO'];
+  const requiredEnv = ['SMTP_HOST', 'SMTP_USER', 'SMTP_PASS'];
   const missingEnv = requiredEnv.filter((key) => !process.env[key]);
 
   if (missingEnv.length > 0) {
@@ -37,12 +37,12 @@ module.exports = async function handler(req, res) {
   const especialidad = cleanText(body.especialidad, 'No especificada') || 'No especificada';
   const mensaje = cleanText(body.mensaje, 'Sin mensaje') || 'Sin mensaje';
 
-  if (!nombre || !apellido || !telefono) {
+  if (!nombre || !apellido || !telefono || !correo) {
     res.status(400).json({ success: false, error: 'Faltan campos requeridos' });
     return;
   }
 
-  if (correo && !isEmail(correo)) {
+  if (!isEmail(correo)) {
     res.status(400).json({ success: false, error: 'Correo electronico invalido' });
     return;
   }
@@ -78,8 +78,8 @@ module.exports = async function handler(req, res) {
   try {
     await transporter.sendMail({
       from: `"${CLINIC_NAME}" <${process.env.SMTP_USER}>`,
-      to: process.env.MAIL_TO,
-      replyTo: correo || process.env.SMTP_USER,
+      to: correo,
+      replyTo: process.env.SMTP_USER,
       subject,
       text
     });
