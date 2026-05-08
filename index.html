@@ -76,6 +76,11 @@
       box-shadow: 0 24px 48px -16px rgba(30,58,138,0.14);
       transform: translateY(-3px);
     }
+    body .spec-card h3 { font-size: 1.55rem !important; }
+    body .spec-card p { font-size: 1.38rem !important; }
+    body .diagnosis-card h3 { font-size: 1.55rem !important; }
+    body .diagnosis-card p,
+    body .diagnosis-card li { font-size: 1.38rem !important; }
 
     .photo-card {
       position: relative; overflow: hidden; border-radius: 1.5rem;
@@ -103,6 +108,7 @@
       box-shadow: 0 24px 48px -18px rgba(30,58,138,0.16);
       transform: translateY(-3px);
     }
+    body .doctor-card > .p-6 > p { font-size: 1.38rem !important; }
     .doctor-photo {
       position: relative;
       height: 21rem;
@@ -211,6 +217,25 @@
     }
     .form-field:focus { border-color: #1e3a8a; box-shadow: 0 0 0 3.5px rgba(30,58,138,0.12); }
     .form-field::placeholder { color: #a1a1aa; }
+
+    /* Escala tipografica: aumenta legibilidad sin tocar espacios, grillas ni secciones. */
+    body .text-\[10px\] { font-size: 0.7rem !important; }
+    body .text-\[11px\] { font-size: 0.76rem !important; }
+    body .text-xs { font-size: 0.82rem !important; }
+    body .text-sm { font-size: 0.96rem !important; }
+    body .text-base { font-size: 1.08rem !important; }
+    body .text-lg { font-size: 1.2rem !important; }
+    body .text-xl { font-size: 1.34rem !important; }
+    body .text-2xl { font-size: 1.62rem !important; }
+    body .text-4xl { font-size: 2.42rem !important; }
+
+    @media (min-width: 768px) {
+      body .md\:text-5xl { font-size: 3.22rem !important; }
+    }
+
+    @media (min-width: 1280px) {
+      body .xl\:text-6xl { font-size: 3.95rem !important; }
+    }
 
     ::-webkit-scrollbar         { width: 5px; }
     ::-webkit-scrollbar-track   { background: #f4f4f5; }
@@ -377,11 +402,11 @@
         <span style="color:#1e3a8a;">ESMEIN</span>
       </h1>
 
-      <p class="reveal visible text-sm font-medium text-zinc-400 mb-3 tracking-wide">
+      <p class="reveal visible text-base font-medium text-zinc-400 mb-3 tracking-wide">
         Especialidades Médicas Integrales
       </p>
 
-      <p class="reveal visible text-sm text-zinc-500 leading-relaxed max-w-[52ch] mb-5 font-light">
+      <p class="reveal visible text-lg text-zinc-500 leading-relaxed max-w-[52ch] mb-5 font-light">
         Atención permanente en todas las especialidades médicas, con tecnología de punta y recursos humanos calificados.
       </p>
 
@@ -396,18 +421,18 @@
 
       <div class="reveal visible flex flex-wrap gap-5 border-t border-zinc-100 pt-4">
         <div>
-          <p class="text-sm font-bold tracking-tight text-zinc-900">ATENCIÓN CONTINUA</p>
-          <p class="text-[11px] text-zinc-400 mt-0.5 leading-snug">8H00 a 18H00 · Lun – Vie</p>
+          <p class="text-base font-bold tracking-tight text-zinc-900">ATENCIÓN CONTINUA</p>
+          <p class="text-sm text-zinc-400 mt-0.5 leading-snug">8H00 a 18H00 · Lun – Vie</p>
         </div>
         <div class="w-px bg-zinc-100 self-stretch"></div>
         <div>
-          <p class="text-sm font-bold tracking-tight text-zinc-900">EMERGENCIAS</p>
-          <p class="text-[11px] text-zinc-400 mt-0.5 leading-snug">Atención permanente</p>
+          <p class="text-base font-bold tracking-tight text-zinc-900">EMERGENCIAS</p>
+          <p class="text-sm text-zinc-400 mt-0.5 leading-snug">Atención permanente</p>
         </div>
         <div class="w-px bg-zinc-100 self-stretch"></div>
         <div>
-          <p class="text-sm font-bold tracking-tight text-zinc-900">+13 ESPECIALIDADES</p>
-          <p class="text-[11px] text-zinc-400 mt-0.5 leading-snug">Médicas integrales</p>
+          <p class="text-base font-bold tracking-tight text-zinc-900">+13 ESPECIALIDADES</p>
+          <p class="text-sm text-zinc-400 mt-0.5 leading-snug">Médicas integrales</p>
         </div>
       </div>
     </div>
@@ -443,8 +468,8 @@
       <div class="relative z-10 p-8 w-full">
         <div class="flex gap-3 flex-wrap">
           <div class="glass-badge px-4 py-3 rounded-2xl float">
-            <p class="text-2xl font-extrabold tracking-tight leading-none" style="color:#1e3a8a;">24/7</p>
-            <p class="text-[10px] text-zinc-400 mt-0.5">atención permanente</p>
+            <p class="text-3xl font-extrabold tracking-tight leading-none" style="color:#1e3a8a;">24/7</p>
+            <p class="text-xs text-zinc-400 mt-0.5">atención permanente</p>
           </div>
           <div class="glass-badge px-4 py-3 rounded-2xl float" style="animation-delay:1s;">
             <div class="flex items-center gap-2">
@@ -454,14 +479,14 @@
                 </svg>
               </div>
               <div>
-                <p class="text-xs font-semibold text-zinc-800 leading-none">Convenio IESS</p>
-                <p class="text-[10px] text-zinc-400">afiliados y familiares</p>
+                <p class="text-sm font-semibold text-zinc-800 leading-none">Convenio IESS</p>
+                <p class="text-xs text-zinc-400">afiliados y familiares</p>
               </div>
             </div>
           </div>
           <div class="glass-badge px-4 py-3 rounded-2xl float" style="animation-delay:2s;">
-            <p class="text-xs font-semibold text-zinc-800 leading-tight">Quito, Ecuador</p>
-            <p class="text-[10px] text-zinc-400">Ángel Ludeña Oe5-296</p>
+            <p class="text-sm font-semibold text-zinc-800 leading-tight">Quito, Ecuador</p>
+            <p class="text-xs text-zinc-400">Ángel Ludeña Oe5-296</p>
           </div>
         </div>
       </div>
@@ -507,20 +532,20 @@
 
           <div class="grid grid-cols-2 gap-x-8 gap-y-6">
             <div class="border-l-2 pl-5" style="border-color:#1e3a8a;">
-              <p class="text-sm font-semibold text-zinc-800 mb-1">Atención 24/7</p>
-              <p class="text-xs text-zinc-400 leading-snug">Todos los días del año, sin excepción</p>
+              <p class="text-base font-semibold text-zinc-800 mb-1">Atención 24/7</p>
+              <p class="text-sm text-zinc-400 leading-snug">Todos los días del año, sin excepción</p>
             </div>
             <div class="border-l-2 border-zinc-200 pl-5">
-              <p class="text-sm font-semibold text-zinc-800 mb-1">Convenio IESS</p>
-              <p class="text-xs text-zinc-400 leading-snug">Atención a afiliados y derecho-habientes</p>
+              <p class="text-base font-semibold text-zinc-800 mb-1">Convenio IESS</p>
+              <p class="text-sm text-zinc-400 leading-snug">Atención a afiliados y derecho-habientes</p>
             </div>
             <div class="border-l-2 border-zinc-200 pl-5">
-              <p class="text-sm font-semibold text-zinc-800 mb-1">+13 Especialidades</p>
-              <p class="text-xs text-zinc-400 leading-snug">Todas las especialidades en un solo centro</p>
+              <p class="text-base font-semibold text-zinc-800 mb-1">+13 Especialidades</p>
+              <p class="text-sm text-zinc-400 leading-snug">Todas las especialidades en un solo centro</p>
             </div>
             <div class="border-l-2 border-zinc-200 pl-5">
-              <p class="text-sm font-semibold text-zinc-800 mb-1">Laboratorio Clínico</p>
-              <p class="text-xs text-zinc-400 leading-snug">Diagnóstico y análisis clínicos completos</p>
+              <p class="text-base font-semibold text-zinc-800 mb-1">Laboratorio Clínico</p>
+              <p class="text-sm text-zinc-400 leading-snug">Diagnóstico y análisis clínicos completos</p>
             </div>
           </div>
         </div>
@@ -748,7 +773,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:auto-rows-fr">
 
         <!-- Imagenología -->
-        <div class="reveal d1 bg-white rounded-3xl p-8 border border-zinc-100 h-full">
+        <div class="diagnosis-card reveal d1 bg-white rounded-3xl p-8 border border-zinc-100 h-full">
           <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:#eff6ff;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
               <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -784,7 +809,7 @@
         </div>
 
         <!-- Ecografía especializada -->
-        <div class="reveal d2 bg-white rounded-3xl p-8 border border-zinc-100 h-full">
+        <div class="diagnosis-card reveal d2 bg-white rounded-3xl p-8 border border-zinc-100 h-full">
           <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:#eff6ff;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
               <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
@@ -816,7 +841,7 @@
           </ul>
         </div>
 
-        <div class="reveal d3 bg-white rounded-3xl p-8 border border-zinc-100 h-full">
+        <div class="diagnosis-card reveal d3 bg-white rounded-3xl p-8 border border-zinc-100 h-full">
           <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-6" style="background:#eff6ff;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
               <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/>
