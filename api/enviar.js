@@ -12,6 +12,15 @@ function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 module.exports = async function handler(req, res) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
 
@@ -57,16 +66,18 @@ module.exports = async function handler(req, res) {
     }
   });
 
-  const subject = `Nueva Solicitud de Cita - ${CLINIC_NAME}`;
+  const submittedAt = new Date().toLocaleString('es-EC', {
+    timeZone: 'America/Guayaquil',
+    dateStyle: 'medium',
+    timeStyle: 'short'
+  });
+  const patientName = `${nombre} ${apellido}`.trim();
+  const subject = `Solicitud de cita de ${patientName} - ${submittedAt}`;
   const text = [
-    '=======================================',
-    ' NUEVA SOLICITUD DE CITA',
-    '=======================================',
+    'Nueva solicitud de cita',
     '',
-    '********** IMPORTANTE **********',
-    'NO RESPONDA ESTE CORREO.',
-    'Debe comunicarse directamente con el paciente usando los datos indicados abajo.',
-    '********************************',
+    'Nota: este mensaje fue generado desde el formulario del sitio web.',
+    'Para coordinar la cita, comuníquese directamente con el paciente usando los datos indicados abajo.',
     '',
     `Nombre:        ${nombre} ${apellido}`,
     `Telefono:      ${telefono}`,
@@ -79,6 +90,23 @@ module.exports = async function handler(req, res) {
     '---------------------------------------',
     `Enviado desde el sitio web de ${CLINIC_NAME}`
   ].join('\n');
+  const html = `
+    <div style="font-family: Arial, sans-serif; color: #18181b; line-height: 1.5;">
+      <h2 style="margin: 0 0 16px; color: #172554;">Nueva solicitud de cita</h2>
+      <div style="border-left: 4px solid #1e3a8a; background: #f8fafc; padding: 12px 14px; margin-bottom: 18px;">
+        <strong>Nota:</strong> este mensaje fue generado desde el formulario del sitio web.<br>
+        Para coordinar la cita, comuníquese directamente con el paciente usando los datos indicados abajo.
+      </div>
+      <p><strong>Nombre:</strong> ${escapeHtml(patientName)}</p>
+      <p><strong>Telefono:</strong> ${escapeHtml(telefono)}</p>
+      <p><strong>Correo:</strong> ${escapeHtml(correo || 'No proporcionado')}</p>
+      <p><strong>Especialidad:</strong> ${escapeHtml(especialidad)}</p>
+      <p><strong>Mensaje:</strong></p>
+      <p style="white-space: pre-wrap;">${escapeHtml(mensaje)}</p>
+      <hr style="border: 0; border-top: 1px solid #e4e4e7; margin: 18px 0;">
+      <p style="font-size: 12px; color: #71717a;">Enviado desde el sitio web de ${escapeHtml(CLINIC_NAME)} el ${escapeHtml(submittedAt)}.</p>
+    </div>
+  `;
 
   try {
     await transporter.sendMail({
@@ -86,7 +114,8 @@ module.exports = async function handler(req, res) {
       to: process.env.MAIL_TO,
       replyTo: correo || process.env.SMTP_USER,
       subject,
-      text
+      text,
+      html
     });
 
     res.status(200).json({ success: true });
