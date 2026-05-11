@@ -280,12 +280,12 @@
       box-shadow: 0 30px 64px -28px rgba(13,27,62,0.5);
     }
     .center-media-card.is-featured {
-      grid-column: span 7;
-      min-height: 430px;
+      grid-column: span 6;
+      grid-row: span 2;
+      min-height: calc(660px + 1.1rem);
     }
     .center-media-card.is-tall {
-      grid-column: span 5;
-      min-height: 430px;
+      grid-column: span 6;
     }
     .center-media-card.is-wide {
       grid-column: span 6;
@@ -395,6 +395,7 @@
       .center-media-card.is-wide,
       .center-media-card.is-compact {
         grid-column: span 6;
+        grid-row: auto;
         min-height: 360px;
       }
       .center-media-card.is-featured {
@@ -769,6 +770,18 @@
     }
     .form-field:focus { border-color: #1e3a8a; box-shadow: 0 0 0 3.5px rgba(30,58,138,0.12); }
     .form-field::placeholder { color: #a1a1aa; }
+
+    .payment-methods-card {
+      border: 1px solid #e4e4e7;
+      background: #fff;
+      box-shadow: 0 18px 42px -28px rgba(13,27,62,0.36);
+    }
+    .payment-methods-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 0.85rem;
+    }
 
     .whatsapp-float {
       position: fixed;
@@ -1180,22 +1193,6 @@
           </div>
         </article>
 
-        <article class="reveal d2 center-media-card is-tall center-carousel" data-center-gallery>
-          <img class="active" src="images/Glosario/Imagen01.png" alt="Área de imagenología del Centro Médico ESMEIN" loading="lazy" />
-          <img src="images/Glosario/Imagen02.png" alt="Equipo médico de imagenología en ESMEIN" loading="lazy" />
-          <img src="images/Glosario/Imagen03.png" alt="Sala de imagenología del Centro Médico ESMEIN" loading="lazy" />
-          <img src="images/Glosario/Imagen04.png" alt="Atención de diagnóstico por imágenes en ESMEIN" loading="lazy" />
-          <img src="images/Glosario/Imagen05.png" alt="Tecnología de imagenología del Centro Médico ESMEIN" loading="lazy" />
-          <img src="images/Glosario/Imagen06.png" alt="Servicio de imagenología en Quito" loading="lazy" />
-          <img src="images/Glosario/Imagen08.png" alt="Espacio de estudios por imágenes en ESMEIN" loading="lazy" />
-          <div class="center-card-indicators" aria-hidden="true"></div>
-          <div class="center-card-content">
-            <span class="center-card-label">Diagnóstico</span>
-            <h3 class="center-card-title">Imagenología</h3>
-            <p class="center-card-text">Equipos y espacios preparados para estudios de diagnóstico por imágenes.</p>
-          </div>
-        </article>
-
         <article class="reveal d3 center-media-card is-wide center-carousel" data-center-gallery>
           <img class="active" src="images/Glosario/Laboratorio01.png" alt="Laboratorio clínico del Centro Médico ESMEIN" loading="lazy" />
           <img src="images/Glosario/Laboratorio02.png" alt="Procesos de análisis clínico en laboratorio ESMEIN" loading="lazy" />
@@ -1242,6 +1239,22 @@
             <p class="center-card-text">Atención dental integral dentro del mismo centro médico.</p>
           </div>
         </article>
+
+        <article class="reveal d2 center-media-card is-tall center-carousel" data-center-gallery>
+          <img class="active" src="images/Glosario/Imagen01.png" alt="Área de imagenología del Centro Médico ESMEIN" loading="lazy" />
+          <img src="images/Glosario/Imagen02.png" alt="Equipo médico de imagenología en ESMEIN" loading="lazy" />
+          <img src="images/Glosario/Imagen03.png" alt="Sala de imagenología del Centro Médico ESMEIN" loading="lazy" />
+          <img src="images/Glosario/Imagen04.png" alt="Atención de diagnóstico por imágenes en ESMEIN" loading="lazy" />
+          <img src="images/Glosario/Imagen05.png" alt="Tecnología de imagenología del Centro Médico ESMEIN" loading="lazy" />
+          <img src="images/Glosario/Imagen06.png" alt="Servicio de imagenología en Quito" loading="lazy" />
+          <img src="images/Glosario/Imagen08.png" alt="Espacio de estudios por imágenes en ESMEIN" loading="lazy" />
+          <div class="center-card-indicators" aria-hidden="true"></div>
+          <div class="center-card-content">
+            <span class="center-card-label">Diagnóstico</span>
+            <h3 class="center-card-title">Imagenología</h3>
+            <p class="center-card-text">Equipos y espacios preparados para estudios de diagnóstico por imágenes.</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -1257,17 +1270,17 @@
             Hospital<br/>del día
           </h2>
           <p class="hospital-copy">
-            ESMEIN prepara una nueva etapa de atención médica ambulatoria, con áreas diseñadas para procedimientos,
-            recuperación y seguimiento clínico en un entorno moderno, eficiente y cercano.
+            ESMEIN prepara una nueva etapa de atención médica ambulatoria, con áreas diseñadas para procedimientos
+            quirúrgicos, recuperación y seguimiento, en un entorno moderno, eficiente y cercano.
           </p>
           <div class="hospital-specs">
             <div>
               <strong>Proyecto en desarrollo</strong>
-              <span>Nuevo centro médico planificado para ampliar la capacidad de atención.</span>
+              <span>Ampliación del centro médico actual, con el objetivo de incorporar especialidades quirúrgicas a la cartera de servicios.</span>
             </div>
             <div>
               <strong>Atención ambulatoria</strong>
-              <span>Espacios pensados para procedimientos y recuperación durante el día.</span>
+              <span>Espacios pensados para procedimientos quirúrgicos y recuperación durante el día.</span>
             </div>
             <div>
               <strong>Diseño médico</strong>
@@ -1353,26 +1366,6 @@
         <div class="spec-card bg-white rounded-3xl p-6 reveal d1 h-full">
           <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-            </svg>
-          </div>
-          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Medicina General e Interna</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">Diagnóstico y tratamiento integral del paciente adulto y adulto mayor.</p>
-        </div>
-
-        <div class="spec-card bg-white rounded-3xl p-6 reveal d2 h-full">
-          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Emergencias</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">Atención de urgencias médicas.</p>
-        </div>
-
-        <div class="spec-card bg-white rounded-3xl p-6 reveal d3 h-full">
-          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
             </svg>
           </div>
@@ -1380,44 +1373,24 @@
           <p class="text-xs text-zinc-400 leading-relaxed">Diagnóstico y tratamiento de enfermedades cardiovasculares, chequeos preventivos e hipertensión arterial</p>
         </div>
 
-        <div class="spec-card bg-white rounded-3xl p-6 reveal d4 h-full">
-          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
-              <path d="M12 2C8.5 2 6 4.5 6 7c0 1.5.5 3 1 4.5C8 14 8 17 9 19c.5 1.5 1.5 3 3 3s2.5-1.5 3-3c1-2 1-5 2-7.5.5-1.5 1-3 1-4.5 0-2.5-2.5-5-6-5z"/>
-            </svg>
-          </div>
-          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Odontología General</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">Atención dental completa para toda la familia</p>
-        </div>
-
-        <div class="spec-card bg-white rounded-3xl p-6 reveal d1 h-full">
-          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
-              <circle cx="12" cy="8" r="4"/><path d="M5 20c0-3.31 3.13-6 7-6s7 2.69 7 6"/>
-            </svg>
-          </div>
-          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Pediatría</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">Atención médica integral para niños y adolescentes</p>
-        </div>
-
         <div class="spec-card bg-white rounded-3xl p-6 reveal d2 h-full">
           <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
-              <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+              <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/>
             </svg>
           </div>
-          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Ginecología</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">Atención integral a la mujer. Control prenatal; anticoncepción familiar</p>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Dermatología</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Diagnóstico y tratamiento de enfermedades de la piel</p>
         </div>
 
         <div class="spec-card bg-white rounded-3xl p-6 reveal d3 h-full">
           <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
-              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             </svg>
           </div>
-          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Traumatología</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">Lesiones músculo-esqueléticas y ortopedia</p>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Emergencias</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Atención de urgencias médicas.</p>
         </div>
 
         <div class="spec-card bg-white rounded-3xl p-6 reveal d4 h-full">
@@ -1433,52 +1406,11 @@
         <div class="spec-card bg-white rounded-3xl p-6 reveal d1 h-full">
           <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
-              <path d="M12 3c-4 0-7 3-7 7s3 7 7 7 7-3 7-7-3-7-7-7z"/><path d="M8.5 9s.5-2 3.5-2 3.5 2 3.5 2M12 16v5M9 19h6"/>
+              <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
             </svg>
           </div>
-          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Psiquiatría</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">Salud mental, diagnóstico y tratamiento psiquiátrico</p>
-        </div>
-
-        <div class="spec-card bg-white rounded-3xl p-6 reveal d2 h-full">
-          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
-              <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/>
-            </svg>
-          </div>
-          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Dermatología</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">Diagnóstico y tratamiento de enfermedades de la piel</p>
-        </div>
-
-        <div class="spec-card bg-white rounded-3xl p-6 reveal d3 h-full">
-          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
-              <path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
-              <line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
-            </svg>
-          </div>
-          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Urología</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">Diagnóstico y tratamiento del sistema urinario</p>
-        </div>
-
-        <div class="spec-card bg-white rounded-3xl p-6 reveal d4 h-full">
-          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
-              <path d="M3 2l1 6 5-4-2 7h8l-2-7 5 4 1-6z"/><path d="M7 14v8"/><path d="M17 14v8"/><path d="M7 18h10"/>
-            </svg>
-          </div>
-          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Nutrición</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">Asesoramiento nutricional y planes alimentarios personalizados</p>
-        </div>
-
-        <div class="spec-card bg-white rounded-3xl p-6 reveal d1 h-full">
-          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
-              <path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
-            </svg>
-          </div>
-          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Laboratorio Clínico</h3>
-          <p class="text-xs text-zinc-400 leading-relaxed">Análisis clínicos completos</p>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Ginecología</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Atención integral a la mujer. Control prenatal; anticoncepción familiar</p>
         </div>
 
         <div class="spec-card bg-white rounded-3xl p-6 reveal d2 h-full">
@@ -1489,6 +1421,87 @@
           </div>
           <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Imagenología</h3>
           <p class="text-xs text-zinc-400 leading-relaxed">Ecografía en general y Rayos X digital, con tecnología de punta</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d3 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <path d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Laboratorio Clínico</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Análisis clínicos completos</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d4 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Medicina General e Interna</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Diagnóstico y tratamiento integral del paciente adulto y adulto mayor.</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d1 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <path d="M3 2l1 6 5-4-2 7h8l-2-7 5 4 1-6z"/><path d="M7 14v8"/><path d="M17 14v8"/><path d="M7 18h10"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Nutrición</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Asesoramiento nutricional y planes alimentarios personalizados</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d2 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <path d="M12 2C8.5 2 6 4.5 6 7c0 1.5.5 3 1 4.5C8 14 8 17 9 19c.5 1.5 1.5 3 3 3s2.5-1.5 3-3c1-2 1-5 2-7.5.5-1.5 1-3 1-4.5 0-2.5-2.5-5-6-5z"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Odontología General</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Atención dental completa para toda la familia</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d3 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <circle cx="12" cy="8" r="4"/><path d="M5 20c0-3.31 3.13-6 7-6s7 2.69 7 6"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Pediatría</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Atención médica integral para niños y adolescentes</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d4 h-full">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <path d="M12 3c-4 0-7 3-7 7s3 7 7 7 7-3 7-7-3-7-7-7z"/><path d="M8.5 9s.5-2 3.5-2 3.5 2 3.5 2M12 16v5M9 19h6"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Psiquiatría</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Salud mental, diagnóstico y tratamiento psiquiátrico</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d1 h-full lg:col-span-2">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Traumatología</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Lesiones músculo-esqueléticas y ortopedia</p>
+        </div>
+
+        <div class="spec-card bg-white rounded-3xl p-6 reveal d2 h-full lg:col-span-2">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#eff6ff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round">
+              <path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+              <line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
+            </svg>
+          </div>
+          <h3 class="text-base font-bold tracking-tight text-zinc-900 mb-2">Urología</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">Diagnóstico y tratamiento del sistema urinario</p>
         </div>
 
       </div>
@@ -1669,8 +1682,25 @@
           </div>
         </div>
 
-        <!-- Dr. George Hidalgo -->
+        <!-- Dra. María Fernanda Ríos -->
         <div class="doctor-card reveal d3 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+          <div class="doctor-photo" data-doctor-gallery>
+            <img src="images/Dra. María Fernanda Ríos  Ginecología y Obstetricia/ginecologa.jpeg" alt="Dra. María Fernanda Ríos — Ginecología y Obstetricia" class="active" />
+            <div class="absolute bottom-4 left-4 right-4">
+              <p class="text-white font-bold text-lg leading-tight">Dra. María Fernanda Ríos</p>
+              <p class="text-blue-200 text-sm leading-snug">Ginecología · Obstetricia</p>
+              <div class="doctor-indicators flex gap-2 mt-3" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-sm text-zinc-500 leading-relaxed">
+              Atención ginecológica y obstétrica para control preventivo, embarazo y salud integral de la mujer.
+            </p>
+          </div>
+        </div>
+
+        <!-- Dr. George Hidalgo -->
+        <div class="doctor-card reveal d4 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
           <div class="doctor-photo" data-doctor-gallery>
             <img src="images/Dr. George Hidalgo (Especialista en acupuntura China)/Dr. George Hidalgo (Especialista en acupuntura China).png" alt="Dr. George Hidalgo — Especialista en acupuntura China" class="active" />
             <img src="images/Dr. George Hidalgo (Especialista en acupuntura China)/Dr. George Hidalgo (Especialista en acupuntura China)_.png" alt="Dr. George Hidalgo — Especialista en acupuntura China" />
@@ -1688,7 +1718,7 @@
         </div>
 
         <!-- MSC Estefanía Carrera -->
-        <div class="doctor-card reveal d4 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+        <div class="doctor-card reveal d5 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
           <div class="doctor-photo" data-doctor-gallery>
             <img src="images/MSC Estefanía Carrera (Nutrióloga)/MSC Estefanía Carrera (nutrióloga).png" alt="MSC Estefanía Carrera — Nutrióloga" class="active" />
             <img src="images/MSC Estefanía Carrera (Nutrióloga)/MSC Estefanía Carrera (nutrióloga)_.png" alt="MSC Estefanía Carrera — Nutrióloga" />
@@ -1707,7 +1737,7 @@
         </div>
 
         <!-- Lic. Angelica Ortega -->
-        <div class="doctor-card reveal d5 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+        <div class="doctor-card reveal d6 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
           <div class="doctor-photo" data-doctor-gallery>
             <img src="images/Lic. Angelica Ortega (Laboratorio clínico)/Lic. Angelica Ortega (Laboratorio clínico) .png" alt="Lic. Angelica Ortega — Laboratorio clínico" class="active" />
             <img src="images/Lic. Angelica Ortega (Laboratorio clínico)/Lic. Angelica Ortega (Laboratorio clínico) _.png" alt="Lic. Angelica Ortega — Laboratorio clínico" />
@@ -1725,7 +1755,7 @@
         </div>
 
         <!-- Dr. Aries Trujillo -->
-        <div class="doctor-card reveal d6 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+        <div class="doctor-card reveal d7 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
           <div class="doctor-photo" data-doctor-gallery>
             <img src="images/Dr. Aries Trujillo (Odontólogo)/Dr. Aries Trujillo (Odontólogo).png" alt="Dr. Aries Trujillo — Odontólogo" class="active" />
             <img src="images/Dr. Aries Trujillo (Odontólogo)/Dr. Aries Trujillo (Odontólogo)_.png" alt="Dr. Aries Trujillo — Odontólogo" />
@@ -1743,7 +1773,7 @@
         </div>
 
         <!-- Junior Briaña -->
-        <div class="doctor-card reveal d7 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
+        <div class="doctor-card reveal d8 bg-white rounded-3xl overflow-hidden border border-zinc-100 shadow-sm">
           <div class="doctor-photo" data-doctor-gallery>
             <img src="images/Junior Briaña (Fisioterapeuta)/Junior Briaña (Fisioterapeuta).png" alt="Junior Briaña — Fisioterapeuta" class="active" />
             <img src="images/Junior Briaña (Fisioterapeuta)/Junior Briaña (Fisioterapeuta)_.png" alt="Junior Briaña — Fisioterapeuta" />
@@ -1998,6 +2028,11 @@
             </div>
           </div>
 
+          <div class="payment-methods-card rounded-2xl p-4 mb-6">
+            <p class="text-xs font-medium text-zinc-400 uppercase tracking-widest mb-3">Medios de pago</p>
+            <img src="images/mediosPago.jpeg" alt="Medios de pago aceptados: Visa, Mastercard, Diners Club, American Express y Discover con Paymentez" loading="lazy" />
+          </div>
+
           <div class="bg-zinc-50 rounded-2xl p-6">
             <p class="text-xs font-medium text-zinc-400 uppercase tracking-widest mb-4">Síguenos en redes</p>
             <p class="text-sm text-zinc-500 leading-relaxed mb-4">
@@ -2049,7 +2084,7 @@
                 <option>Emergencia / Urgencia</option>
                 <option>Cardiología</option>
                 <option>Pediatría</option>
-                <option>Ginecología</option>
+                <option>Ginecología y Obstetricia</option>
                 <option>Urología</option>
                 <option>Traumatología y Ortopedia</option>
                 <option>Gastroenterología</option>
