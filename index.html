@@ -783,6 +783,87 @@
       border-radius: 0.85rem;
     }
 
+    .radiology-spotlight {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(72% 72% at 92% 12%, rgba(45, 212, 191, 0.14) 0%, rgba(45, 212, 191, 0) 58%),
+        linear-gradient(135deg, #f8fafc 0%, #ffffff 48%, #eff6ff 100%);
+    }
+    .radiology-spotlight::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.72;
+      background-image:
+        linear-gradient(90deg, rgba(30,58,138,0.05) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(30,58,138,0.045) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, transparent 0%, #000 24%, #000 76%, transparent 100%);
+    }
+    .radiology-panel {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.72fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+    .radiology-image-button {
+      position: relative;
+      width: min(100%, 390px);
+      margin: 0 auto;
+      overflow: hidden;
+      border: 1px solid rgba(14, 116, 144, 0.14);
+      border-radius: 1.35rem;
+      background: #fff;
+      box-shadow: 0 28px 70px -34px rgba(13,27,62,0.42);
+      cursor: zoom-in;
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    .radiology-image-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 34px 78px -34px rgba(13,27,62,0.5);
+    }
+    .radiology-image-button:focus-visible {
+      outline: 3px solid rgba(14, 165, 233, 0.32);
+      outline-offset: 5px;
+    }
+    .radiology-image-button img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .radiology-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.8rem;
+    }
+    .radiology-tags span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.15rem;
+      padding: 0.5rem 0.78rem;
+      border: 1px solid rgba(14, 116, 144, 0.13);
+      border-radius: 0.8rem;
+      background: rgba(255,255,255,0.72);
+      color: #164e63;
+      font-size: 0.86rem;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+    }
+
+    @media (max-width: 900px) {
+      .radiology-panel {
+        grid-template-columns: 1fr;
+      }
+      .radiology-image-button {
+        width: min(100%, 360px);
+      }
+    }
+
     .whatsapp-float {
       position: fixed;
       right: clamp(1rem, 3vw, 2rem);
@@ -971,31 +1052,33 @@
         <img src="images/logo.png" alt="Centro Médico Quirúrgico ESMEIN" class="h-10 w-auto" />
       </a>
 
-      <div class="hidden md:flex items-center gap-5 lg:gap-7">
+      <div class="hidden lg:flex items-center gap-5 xl:gap-7">
         <a href="#nosotros"       class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors">Nosotros</a>
         <a href="#hospital-dia"   class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors">Hospital del día</a>
         <a href="#especialidades" class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors">Especialidades</a>
         <a href="#diagnostico"    class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors">Diagnóstico</a>
+        <a href="#radiologia"     class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors">Radiología</a>
         <a href="#equipo"         class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors">Médicos</a>
         <a href="#contacto"       class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors">Contacto</a>
       </div>
 
-      <a href="tel:022297577" class="btn-navy hidden md:block text-sm font-medium px-5 py-2.5 rounded-full">
+      <a href="tel:022297577" class="btn-navy hidden lg:block text-sm font-medium px-5 py-2.5 rounded-full">
         Llamar ahora
       </a>
 
-      <button id="menu-btn" class="md:hidden p-1.5 text-zinc-600" aria-label="Menú">
+      <button id="menu-btn" class="lg:hidden p-1.5 text-zinc-600" aria-label="Menú">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
         </svg>
       </button>
     </div>
 
-    <div id="mobile-menu" class="hidden md:hidden px-6 pt-3 pb-5 flex flex-col gap-4 border-t border-zinc-100/70">
+    <div id="mobile-menu" class="hidden lg:hidden px-6 pt-3 pb-5 flex flex-col gap-4 border-t border-zinc-100/70">
       <a href="#nosotros"       class="text-sm text-zinc-600 hover:text-zinc-900">Nosotros</a>
       <a href="#hospital-dia"   class="text-sm text-zinc-600 hover:text-zinc-900">Hospital del día</a>
       <a href="#especialidades" class="text-sm text-zinc-600 hover:text-zinc-900">Especialidades</a>
       <a href="#diagnostico"    class="text-sm text-zinc-600 hover:text-zinc-900">Diagnóstico</a>
+      <a href="#radiologia"     class="text-sm text-zinc-600 hover:text-zinc-900">Radiología</a>
       <a href="#equipo"         class="text-sm text-zinc-600 hover:text-zinc-900">Médicos</a>
       <a href="#contacto"       class="text-sm text-zinc-600 hover:text-zinc-900">Contacto</a>
       <a href="tel:022297577" class="btn-navy text-sm font-medium px-5 py-3 rounded-full text-center">Llamar ahora</a>
@@ -1628,6 +1711,55 @@
   </section>
 
 
+  <!-- ════════════════ RADIOLOGÍA DR. UREÑA ════════════════ -->
+  <section id="radiologia" class="radiology-spotlight py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <div class="radiology-panel">
+        <div class="reveal">
+          <p class="text-xs font-medium tracking-widest uppercase mb-4" style="color:#0e7490;">Radiología especializada</p>
+          <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter text-zinc-900 leading-tight mb-6">
+            Biopsias con guía<br/>especializada
+          </h2>
+          <div class="w-10 h-[3px] rounded-full mb-8" style="background:#0e7490;"></div>
+
+          <p class="text-lg text-zinc-500 leading-relaxed max-w-[58ch] font-light">
+            <strong class="font-semibold text-zinc-900">radiologia_drurena</strong> 🧬 Biopsias con guía especializada y precisión diagnóstica.
+            En Radiología Dr. Ureña realizamos procedimientos con respaldo profesional y tecnología adecuada
+            para un diagnóstico seguro y oportuno.
+          </p>
+
+          <div class="radiology-tags">
+            <span>Biopsia de mama</span>
+            <span>Biopsia de tiroides</span>
+            <span>Biopsia de ganglios</span>
+            <span>Biopsia de próstata</span>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="https://wa.me/59360390142?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20biopsias%20con%20gu%C3%ADa%20especializada."
+               target="_blank" rel="noopener"
+               class="btn-navy px-6 py-3 rounded-full font-semibold text-sm">
+              Consultar por WhatsApp
+            </a>
+            <a href="tel:22211565" class="btn-outline bg-white px-6 py-3 rounded-full font-medium text-sm">
+              Llamar a central
+            </a>
+          </div>
+        </div>
+
+        <div class="reveal d2">
+          <button class="radiology-image-button" type="button"
+                  data-lightbox-src="images/radiologia.png"
+                  data-lightbox-alt="Radiología Dr. Ureña: biopsias de mama, tiroides, ganglios y próstata"
+                  aria-label="Ampliar imagen de Radiología Dr. Ureña">
+            <img src="images/radiologia.png" alt="Radiología Dr. Ureña: biopsias de mama, tiroides, ganglios y próstata" loading="lazy" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
   <!-- ════════════════ EQUIPO MÉDICO ════════════════ -->
   <section id="equipo" class="py-24 lg:py-32 bg-zinc-50">
     <div class="max-w-7xl mx-auto px-6 md:px-12">
@@ -2095,6 +2227,7 @@
                 <option>Odontología</option>
                 <option>Laboratorio Clínico</option>
                 <option>Imagenología / Ecografía</option>
+                <option>Radiología Dr. Ureña / Biopsias guiadas</option>
                 <option>Rayos X y Estudios Especiales</option>
                 <option>Medicina Crítica</option>
               </select>
@@ -2137,6 +2270,7 @@
           <a href="#hospital-dia"   class="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">Hospital del día</a>
           <a href="#especialidades" class="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">Especialidades</a>
           <a href="#diagnostico"    class="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">Diagnóstico</a>
+          <a href="#radiologia"     class="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">Radiología</a>
           <a href="#equipo"         class="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">Médicos</a>
           <a href="#contacto"       class="text-sm text-zinc-600 hover:text-zinc-300 transition-colors">Contacto</a>
         </div>
